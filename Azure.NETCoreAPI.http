@@ -1,6 +1,0 @@
-@Azure.NETCoreAPI_HostAddress = http://localhost:5020
-
-GET {{Azure.NETCoreAPI_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
