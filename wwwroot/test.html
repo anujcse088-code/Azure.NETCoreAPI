@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    pre { background:#f6f8fa; padding:1rem; border-radius:6px; }
+  </style>
+</head>
+<body>
+  <h1>Azure.NETCoreAPI - Test Page</h1>
+  <p>This is a simple test HTML page served from <code>wwwroot/test.html</code>.</p>
+
+  <h2>Sample API call</h2>
+  <p>Click the button below to fetch workcenter types from the API.</p>
+  <button id="load">Load Workcenter Types</button>
+  <pre id="output">Not loaded</pre>
+
+  <script>
+    document.getElementById('load').addEventListener('click', async () => {
+      const out = document.getElementById('output');
+      try {
+        const resp = await fetch('/api/WorkcenterType');
+        if (!resp.ok) throw new Error(resp.status + ' ' + resp.statusText);
+        const json = await resp.json();
+        out.textContent = JSON.stringify(json, null, 2);
+      } catch (e) {
+        out.textContent = 'Error: ' + e.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -23,6 +23,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+// Serve static files from wwwroot (so test HTML page can be accessed)
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthorization();
 
 app.MapControllers();
