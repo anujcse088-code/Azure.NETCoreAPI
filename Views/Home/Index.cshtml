@@ -1,0 +1,15 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Home";
+}
+
+<div class="home-container">
+    <h1>Welcome to Azure.NETCoreAPI</h1>
+    <p>This is the home page. Use the links below to navigate.</p>
+
+    <ul>
+        <li><a asp-controller="Home" asp-action="About">About</a></li>
+        <li><a asp-controller="Home" asp-action="SampleContent">Sample Content</a></li>
+        <li><a asp-controller="Home" asp-action="Contact">Contact US</a></li>
+    </ul>
+</div>

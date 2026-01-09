@@ -63,6 +63,6 @@ app.UseAuthorization();
 
 // Map controllers and set up default route for MVC views
 app.MapControllers();
-app.MapControllerRoute(name: "default", pattern: "{controller=Config}/{action=Index}/{id?}");
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
