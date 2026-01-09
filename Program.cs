@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+// Use MVC with views so we can return cshtml views from controllers
+builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>();
@@ -60,6 +61,8 @@ app.UseStaticFiles();
 
 app.UseAuthorization();
 
+// Map controllers and set up default route for MVC views
 app.MapControllers();
+app.MapControllerRoute(name: "default", pattern: "{controller=Config}/{action=Index}/{id?}");
 
 app.Run();
