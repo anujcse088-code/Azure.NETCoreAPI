@@ -4,9 +4,13 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationInsightsResourceId>/subscriptions/15562fb8-2e62-4cc8-830e-6d592da5b99e/resourcegroups/az-web-app/providers/microsoft.insights/components/AzureNETCoreAPI</ApplicationInsightsResourceId>
+    <UserSecretsId>f95f04d6-4a7f-482e-a7e1-faf272512dd1</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.17.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.0" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />

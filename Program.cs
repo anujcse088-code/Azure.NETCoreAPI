@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
+using Azure.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,10 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
     ?? "Server=(localdb)\\MSSQLLocalDB;Database=TrakDB;Integrated Security=True;TrustServerCertificate=True;";
 
 builder.Services.AddSingleton<Azure.NETCoreAPI.Data.IWorkcenterTypeRepository>(sp => new Azure.NETCoreAPI.Data.WorkcenterTypeRepository(connectionString));
+builder.Services.AddApplicationInsightsTelemetry(new Microsoft.ApplicationInsights.AspNetCore.Extensions.ApplicationInsightsServiceOptions
+{
+    ConnectionString = builder.Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]
+});
 
 var app = builder.Build();
 
