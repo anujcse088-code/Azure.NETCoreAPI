@@ -12,8 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor>();
 
-// Register repository with connection string from configuration
-var connectionString = "Data Source=10.16.27.14;Database=TrakDB;Integrated Security=False;User Id=WebAppUser;Password=CWRP@2021!;MultipleActiveResultSets=True;persist security info=True;TrustServerCertificate=True;";
+// Register repository with connection string from configuration or environment, fallback to localdb
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? Environment.GetEnvironmentVariable("CONNECTION_STRING")
+    ?? "Server=(localdb)\\MSSQLLocalDB;Database=TrakDB;Integrated Security=True;TrustServerCertificate=True;";
+
 builder.Services.AddSingleton<Azure.NETCoreAPI.Data.IWorkcenterTypeRepository>(sp => new Azure.NETCoreAPI.Data.WorkcenterTypeRepository(connectionString));
 
 var app = builder.Build();
